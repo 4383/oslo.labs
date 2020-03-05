@@ -1,0 +1,9 @@
+*.old
+**/csr
+**/newcerts
+
+__pycache__
+
+.tox
+.ipynb_checkpoints
+vault_*
