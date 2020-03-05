@@ -22,6 +22,7 @@ services:
     container_name: oslo-cache
     volumes:
       - .:/root/app
+      - ./lab:/root/lab
       - /home/hberaud/dev:/root/dev
       - /home/hberaud/.zshrc:/root/.zshrc
       - /home/hberaud/.oh-my-zsh:/root/.oh-my-zsh
