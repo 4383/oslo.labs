@@ -28,6 +28,7 @@ RUN apk add \
     linux-headers \
     libc-dev \
     zsh \
+    busybox-extras \
     gcc
 
 COPY requirements.txt /

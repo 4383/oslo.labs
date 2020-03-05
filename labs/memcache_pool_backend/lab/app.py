@@ -41,7 +41,12 @@ def boom(x):
     print(x)
     return x
 
+@MEMOIZE
+def ohyeah(x):
+    print(x)
+    return x
 
 boom.set(14)
+ohyeah.set('foo')
 print(boom.get())
 print(dir(boom))
