@@ -48,7 +48,8 @@ lab successfully settled!
 Join your lab by using:
     docker exec -it oslo.cache-memcache_pool_backend.lab /bin/zsh
 Stop your lab by using:
-    docker-compose -f oslo.cache/memcache_pool_backend/docker-
+    docker-compose -f oslo.cache/memcache_pool_backend/docker-compose-lab.yml down
+==============================================================
 ```
 
 Now enter in your lab:
