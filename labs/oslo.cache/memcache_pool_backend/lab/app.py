@@ -6,6 +6,8 @@ _CONFIG_FILES = [
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "app.conf"),
 ]
 
+test = 1
+
 CONF = cfg.CONF
 
 cfg.CONF(default_config_files=_CONFIG_FILES)
@@ -34,6 +36,8 @@ print("------------------------------------------------------")
 # Load config file here
 
 cache.configure_cache_region(CONF, example_cache_region)
+
+print("Cache configuration done")
 
 
 @MEMOIZE
