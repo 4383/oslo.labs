@@ -9,7 +9,7 @@ Labs provide some preconfigured scenario to help you to test and debug
 oslo's libraries and also oslo's projects requirements like `python-memcached`,
 `dogpile.cache`, etc...
 
-Each change made on an oslo library or requirements in your lab are
+Each change made on an oslo library or on requirements in your lab are
 synchronized with your github forks of each projects, this allow you
 to quickly iterate over your changes in your lab, and when you think you
 are ready you can rebase all your changes properly to a dedicated branch
