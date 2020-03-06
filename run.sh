@@ -16,9 +16,12 @@ fi
 docker-compose -f ${LAB}/docker-compose-lab.yml down
 docker-compose -f ${LAB}/docker-compose-lab.yml build
 docker-compose -f ${LAB}/docker-compose-lab.yml up -d
+LAB=${LAB//labs\//}
 echo "=============================================================="
-echo "Now connect to your lab by using:"
-echo -e "\tdocker exec -it oslo-lab /bin/zsh"
+echo "lab successfully settled!"
+echo "=============================================================="
+echo "Join your lab by using:"
+echo -e "\tdocker exec -it ${LAB//\//-}.lab /bin/zsh"
 echo "Stop your lab by using:"
 echo -e "\tdocker-compose -f ${LAB}/docker-compose-lab.yml down"
 echo "=============================================================="
