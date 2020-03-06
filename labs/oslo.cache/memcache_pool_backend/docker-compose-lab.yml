@@ -14,15 +14,15 @@
 
 version: '3'
 services:
-  oslo-cache:
+  oslo-lab:
     build:
-      dockerfile: docker/oslo-cache-dev.dockerfile
+      dockerfile: docker/oslo-lab.dockerfile
       context: .
       args:
         GITHUB: 4383
         GERRIT: hberaud
-    image: oslo_cache_dev
-    container_name: oslo-cache
+    image: oslo_lab
+    container_name: oslo-lab
     volumes:
       - .:/root/app
       - ./lab:/root/lab
