@@ -2,7 +2,7 @@
 
 Openstack Oslo labs
 
-Aim to help you to debug Openstack Oslo libraries, by setting up
+oslo.labs aim to help you to debug Openstack Oslo libraries, by setting up
 automatically a complete environment ready for hacking and debug.
 
 Labs provide some preconfigured scenario to help you to test and debug
