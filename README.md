@@ -11,7 +11,7 @@ oslo's libraries and also oslo's projects requirements like `python-memcached`,
 
 Each change made on an oslo library or on requirements in your lab are
 synchronized with your github forks of each projects, this allow you
-to quickly iterate over your changes in your lab, and when you think you
+to quickly iterate on your changes in your lab, and when you think you
 are ready you can rebase all your changes properly to a dedicated branch
 ready for review.
 
