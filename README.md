@@ -27,7 +27,7 @@ Choose the lab you want to use:
 
 ```sh
 $ ./list.sh
-oslo.cache labs:
+oslo.cache's labs:
 -  memcache_pool_backend
 ```
 
