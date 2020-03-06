@@ -1,0 +1,70 @@
+# Copyright 2018 Red Hat, Inc.
+#
+#    Licensed under the Apache License, Version 2.0 (the "License"); you may
+#    not use this file except in compliance with the License. You may obtain
+#    a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#    License for the specific language governing permissions and limitations
+#    under the License.
+
+version: '3'
+services:
+  oslo-lab:
+    build:
+      #context: ../../../base/docker/
+      context: ../../../base/docker/
+      dockerfile: oslo-lab.dockerfile
+      args:
+        GITHUB: 4383
+        GERRIT: hberaud
+    image: oslo_lab:base
+
+  oslo.cache-memcache_pool_backend.lab:
+    build:
+      dockerfile: docker/oslo-lab.dockerfile
+      context: .
+      args:
+        GITHUB: 4383
+        GERRIT: hberaud
+    image: oslo.cache-memcache_pool_backend.lab
+    container_name: oslo.cache-memcache_pool_backend.lab
+    volumes:
+      # mount your app to allow us to edit our scenarios
+      - .:/root/app
+      - ./payloads:/root/payloads
+      # mount our personal config for ssh and git stuffs
+      - ~/.ssh:/setup/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+      # it could be useful to mount our home to allow us to
+      # trick some local code, by example I want to install my
+      # local clone of oslo.cache in development mode to help me to
+      # debug this one.
+      - ~/:/home
+    networks:
+      - dev-network
+    depends_on:
+      - memcached1
+      - memcached2
+
+  memcached1:
+    image: memcached
+    hostname: memcached1
+    container_name: memcached1
+    networks:
+      - dev-network
+
+  memcached2:
+    image: memcached
+    hostname: memcached2
+    container_name: memcached2
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    driver: bridge
