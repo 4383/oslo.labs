@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.cache'
+let g:netrw_dirhist_4='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.context'
+let g:netrw_dirhist_3='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.policy'
+let g:netrw_dirhist_2='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.db'
+let g:netrw_dirhist_1='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.tools/doc/source/reference'
+let g:netrw_dirhist_0='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.tools/doc/source'
+let g:netrw_dirhist_9='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.tools/doc'
+let g:netrw_dirhist_8='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.tools/doc/source/user'
+let g:netrw_dirhist_7='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.tools/doc/source'
+let g:netrw_dirhist_6='/home/hberaud/dev/redhat/upstream/openstack/oslo/oslo.tools/doc'

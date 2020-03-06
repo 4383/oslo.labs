@@ -18,32 +18,41 @@ services:
     build:
       dockerfile: docker/oslo-cache-dev.dockerfile
       context: .
+      args:
+        GITHUB: 4383
+        GERRIT: hberaud
     image: oslo_cache_dev
     container_name: oslo-cache
     volumes:
       - .:/root/app
       - ./lab:/root/lab
-      - /home/hberaud/dev:/root/dev
-      - /home/hberaud/.zshrc:/root/.zshrc
-      - /home/hberaud/.oh-my-zsh:/root/.oh-my-zsh
-      - /home/hberaud/.aliases:/root/.aliases
+      - ~/.ssh:/setup/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+      # it could be useful to mount our home to allow us to
+      # trick some local code, by example I want to install my
+      # local clone of oslo.cache in development mode to help me to
+      # debug this one.
+      - ~/:/home
     networks:
       - dev-network
     depends_on:
       - memcached1
       - memcached2
+
   memcached1:
     image: memcached
     hostname: memcached1
     container_name: memcached1
     networks:
       - dev-network
+
   memcached2:
     image: memcached
     hostname: memcached2
     container_name: memcached2
     networks:
       - dev-network
+
 networks:
   dev-network:
     driver: bridge
