@@ -35,11 +35,26 @@ Start your lab:
 
 ```sh
 $ ./run.sh oslo.cache/memcache_pool_backend
+...
+Creating network "memcache_pool_backend_default" with the default driver
+Creating network "memcache_pool_backend_dev-network" with driver "bridge"
+Creating memcache_pool_backend_oslo-lab_1 ... done
+Creating memcached2                       ... done
+Creating memcached1                       ... done
+Creating oslo.cache-memcache_pool_backend.lab ... done
+==============================================================
+lab successfully settled!
+==============================================================
+Join your lab by using:
+    docker exec -it oslo.cache-memcache_pool_backend.lab /bin/zsh
+Stop your lab by using:
+    docker-compose -f oslo.cache/memcache_pool_backend/docker-
 ```
 
-Enter in your lab:
+Now enter in your lab:
 ```sh
-$ docker exec -it oslo-lab /bin/zsh
+$ docker exec -it oslo.cache-memcache_pool_backend.lab /bin/zsh
+
 lab $ python lab/app.py
 lab $ ls ~/debug # here are all the libs you may want to modify for your tests
 ```
