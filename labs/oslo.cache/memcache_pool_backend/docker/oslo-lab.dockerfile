@@ -13,52 +13,15 @@
 #    under the License.
 
 # python:alpine is 3.{latest}
-FROM python:alpine
+FROM oslo_lab:base
 
 LABEL maintainer="Hervé Beraud <hberaud@redhat.com>"
 
-RUN apk update
-# git is required by pbr to install local package
-# the purpose of this environment is to install local
-# packages for development so we need git too.
-RUN apk add \
-    vim \
-    git \
-    musl-dev \
-    bash \
-    linux-headers \
-    libc-dev \
-    zsh \
-    zsh-vcs \
-    busybox-extras \
-    openssh \
-    gcc
-
-COPY requirements.txt /
-
-RUN pip install -r /requirements.txt
-
-# Setup a fake server to keep container alive to play with him
-RUN mkdir /flask
-RUN mkdir /oslo-lab
-COPY app.py /flask
-COPY environment/hello.sh /oslo-lab/hello.sh
-COPY environment/ciao.sh /oslo-lab/ciao.sh
-COPY environment/motd.sh /etc/motd.sh
-COPY environment/.vimrc /root/.vimrc
-COPY environment/.vim /root/.vim
-COPY environment/.zshrc /root/.zshrc
-COPY environment/.oh-my-zsh /root/.oh-my-zsh
-COPY environment/.aliases /root/.aliases
-
-EXPOSE 5000
-
-RUN mkdir /root/debug
-WORKDIR /root/debug
-#
-# Who I am on github
+# Who I am on github and gerrit
 ARG GITHUB
 ARG GERRIT
+
+WORKDIR /root/debug
 
 # Install oslo.cache dependencies that we want to debug and to keep
 # modification after shutdown to avoid to reinvente the wheel at each reboot
@@ -104,5 +67,5 @@ RUN git clone https://github.com/openstack/oslo.cache && \
     pip install -e . && \
     cd ..
 
+# back to ~
 WORKDIR /root
-ENTRYPOINT ["python", "/flask/app.py"]

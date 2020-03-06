@@ -16,16 +16,28 @@ version: '3'
 services:
   oslo-lab:
     build:
+      #context: ../../../base/docker/
+      context: ../../../base/docker/
+      dockerfile: oslo-lab.dockerfile
+      args:
+        GITHUB: 4383
+        GERRIT: hberaud
+    image: oslo_lab:base
+
+  oslo.cache-memcache_pool_backend.lab:
+    build:
       dockerfile: docker/oslo-lab.dockerfile
       context: .
       args:
         GITHUB: 4383
         GERRIT: hberaud
-    image: oslo_lab
-    container_name: oslo-lab
+    image: oslo.cache-memcache_pool_backend.lab
+    container_name: oslo.cache-memcache_pool_backend.lab
     volumes:
+      # mount your app to allow us to edit our scenarios
       - .:/root/app
-      - ./lab:/root/lab
+      - ./payloads:/root/payloads
+      # mount our personal config for ssh and git stuffs
       - ~/.ssh:/setup/.ssh
       - ~/.gitconfig:/root/.gitconfig
       # it could be useful to mount our home to allow us to
