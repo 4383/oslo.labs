@@ -44,6 +44,17 @@ lab $ python lab/app.py
 lab $ ls ~/debug # here are all the libs you may want to modify for your tests
 ```
 
+Create a new lab from an existing template:
+```sh
+$ # list existing templates
+$ ./new --list
+$ # create a new lab named testXYZ in the oslo.cache scope
+$ # from the default template
+$ ./new --lab-group=oslo.cache testXYZ
+$ # more options are availables
+$ ./new -h
+```
+
 ## Labs
 
 ## Overview

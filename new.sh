@@ -11,18 +11,18 @@ function help {
 cat <<EOF
 usage: $0 [<args>]
 
-Deploy openstack by using brucejr
+Setup a new lab from existing templates
 
 Arguments:
-    --host              the host to deploy on
-    -r, --release       the openstack release to deploy
+    --template          the template to use (default to base)
+    --lab-group         the destination group to host the lab (oslo.labs, oslo.cache...)
+                        Must exist before usage.
                         (master, stein, rocky, queens, etc...)(default=master)
-    -s, --scenario      the scenario to use
-                        (simple, upgrade, iha, etc...)(default=simple)
+    -l, --list          list available templates and exit
     -d, --debug         Turn on the debug mode
     -h, --help          show this help message and exit
 examples:
-    $0 --host=hab-100 --release=stein --scenario=upgrade
+    $0 --template=oslo-example --lab-group=oslo.cache
 EOF
 }
 
@@ -35,6 +35,11 @@ LAB_GROUP=oslo.labs
 for i in "$@"
 do
     case $i in
+        # Turn on the debug mode
+        -d|--debug)
+        set -x
+        shift 1
+        ;;
         # The template to use
         --template=*)
         TEMPLATE="${i#*=}"
@@ -54,8 +59,6 @@ do
             help
             exit 1
         fi
-        GROUP_NAME=${LAB_GROUP}
-        LAB_GROUP=${BASE_LABS_PATH}/${LAB_GROUP}
         shift 1
         ;;
         # Turn on the debug mode
@@ -66,11 +69,6 @@ do
         done
         exit 0
         ;;
-        # Turn on the debug mode
-        -d|--debug)
-        set -x
-        shift 1
-        ;;
         # Display the helping message
         -h|--help)
         help
@@ -80,16 +78,17 @@ do
 done
 
 if [ -z $1 ]; then
-do
     echo "Template name is mandatory"
     exit 1
-done
+fi
 NAME=$1
 
-cp -r ${TEMPLATE} ${LAB_GROUP}
+
+
+cp -r ${TEMPLATE} ${BASE_LABS_PATH}/${LAB_GROUP}/${NAME}
 echo "=============================================================="
 echo "New lab successfully initialized from template!"
 echo "=============================================================="
 echo "Start your lab by using:"
-echo -e "\t./run.sh ${GROUP_NAME}/${NAME}"
+echo -e "\t./run.sh ${LAB_GROUP}/${NAME}"
 echo "=============================================================="
