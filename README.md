@@ -55,7 +55,6 @@ Stop your lab by using:
 Now enter in your lab:
 ```sh
 $ docker exec -it oslo.cache-memcache_pool_backend.lab /bin/zsh
-
 lab $ python lab/app.py
 lab $ ls ~/debug # here are all the libs you may want to modify for your tests
 ```
